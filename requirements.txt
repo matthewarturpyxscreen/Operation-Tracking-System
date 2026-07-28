@@ -1,0 +1,6 @@
+streamlit
+supabase
+python-dotenv
+pandas
+Pillow
+streamlit-drawable-canvas
