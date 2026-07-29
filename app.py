@@ -382,4 +382,44 @@ def dashboard():
     st.title(menu)
 
     st.write("Halaman masih dalam tahap development.")
+
+# ==========================================================
+# MAIN
+# ==========================================================
+
+if not st.session_state.login:
+
+    login_page()
+
+else:
+
+    menu=sidebar()
+
+    if menu=="Dashboard":
+
+        dashboard()
+
+    elif menu=="Gate → Container":
+
+        st.title("🚚 Gate → Container")
+
+    elif menu=="Bundle → MAP":
+
+        st.title("📁 Bundle → MAP")
+
+    elif menu=="Sortir → QC":
+
+        st.title("📦 Sortir → QC")
+
+    elif menu=="QC → Arsip":
+
+        st.title("🗄 QC → Arsip")
+
+    elif menu=="Monitoring":
+
+        st.title("📊 Monitoring")
+
+    elif menu=="Master User":
+
+        st.title("👥 Master User")
     
