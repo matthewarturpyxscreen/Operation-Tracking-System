@@ -257,16 +257,128 @@ def sidebar():
     return menu
 
 # ==========================================================
-# MAIN
+# DASHBOARD
 # ==========================================================
 
-if not st.session_state.login:
-    login_page()
+def dashboard():
 
-else:
+    st.markdown(
+        """
+        <h1 class='main-title'>📊 Operation Tracking System</h1>
+        <p class='sub-title'>
+        Welcome back, Administrator
+        </p>
+        """,
+        unsafe_allow_html=True
+    )
 
-    menu = sidebar()
+    c1,c2,c3,c4=st.columns(4)
 
+    with c1:
+
+        st.markdown("""
+        <div class='metric-card'>
+            <div class='metric-title'>
+            Total Container
+            </div>
+
+            <div class='metric-value'>
+            125
+            </div>
+        </div>
+        """,unsafe_allow_html=True)
+
+    with c2:
+
+        st.markdown("""
+        <div class='metric-card'>
+            <div class='metric-title'>
+            Total MAP
+            </div>
+
+            <div class='metric-value'>
+            532
+            </div>
+        </div>
+        """,unsafe_allow_html=True)
+
+    with c3:
+
+        st.markdown("""
+        <div class='metric-card'>
+            <div class='metric-title'>
+            Total QC
+            </div>
+
+            <div class='metric-value'>
+            487
+            </div>
+        </div>
+        """,unsafe_allow_html=True)
+
+    with c4:
+
+        st.markdown("""
+        <div class='metric-card'>
+            <div class='metric-title'>
+            Total Arsip
+            </div>
+
+            <div class='metric-value'>
+            421
+            </div>
+        </div>
+        """,unsafe_allow_html=True)
+
+    st.write("")
+
+    left,right=st.columns([2,1])
+
+    with left:
+
+        st.subheader("📈 Recent Activity")
+
+        df=pd.DataFrame({
+
+            "Jam":[
+                "08:10",
+                "08:15",
+                "08:22",
+                "08:40"
+            ],
+
+            "Proses":[
+                "Gate → Container",
+                "Bundle → MAP",
+                "Sortir → QC",
+                "QC → Arsip"
+            ],
+
+            "Nomor":[
+                "RCV001",
+                "RCV002",
+                "MAP001",
+                "MAP001"
+            ]
+
+        })
+
+        st.dataframe(
+            df,
+            use_container_width=True,
+            hide_index=True
+        )
+
+    with right:
+
+        st.subheader("📌 Progress")
+
+        st.progress(.85)
+
+        st.metric(
+            "Today's Progress",
+            "85%"
+        )
     st.title(menu)
 
     st.write("Halaman masih dalam tahap development.")
