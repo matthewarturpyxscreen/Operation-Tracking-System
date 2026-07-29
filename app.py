@@ -255,3 +255,19 @@ def sidebar():
         st.rerun()
 
     return menu
+
+# ==========================================================
+# MAIN
+# ==========================================================
+
+if not st.session_state.login:
+    login_page()
+
+else:
+
+    menu = sidebar()
+
+    st.title(menu)
+
+    st.write("Halaman masih dalam tahap development.")
+    
