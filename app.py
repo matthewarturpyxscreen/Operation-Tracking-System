@@ -412,19 +412,208 @@ if menu=="🏠 Dashboard":
 
 elif menu=="🚚 Gate → Container":
 
-    st.title("Gate → Container")
+    st.title("🚚 Gate → Container")
+
+    st.caption("Input proses Gate menuju Container")
+
+    with st.form("gate_form", clear_on_submit=False):
+
+        col1,col2=st.columns(2)
+
+        with col1:
+
+            nomor_penerimaan=st.text_input(
+                "Nomor Penerimaan",
+                placeholder="Contoh : RCV240001"
+            )
+
+        with col2:
+
+            kode_container=st.text_input(
+                "Kode Container",
+                placeholder="Contoh : CONT-001"
+            )
+
+        st.divider()
+
+        st.subheader("📷 Dokumentasi")
+
+        foto=st.camera_input(
+            "Ambil Foto"
+        )
+
+        st.divider()
+
+        st.subheader("✍ Digital Signature")
+
+        tanda_tangan=st.text_area(
+            "Nama Penanggung Jawab",
+            placeholder="Nama Petugas"
+        )
+
+        st.divider()
+
+        timestamp=datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+
+        st.text_input(
+            "Timestamp",
+            value=timestamp,
+            disabled=True
+        )
+
+        simpan=st.form_submit_button(
+            "💾 SIMPAN",
+            use_container_width=True
+        )
+
+    if simpan:
+
+        if nomor_penerimaan=="":
+
+            st.error("Nomor penerimaan wajib diisi.")
+
+        elif kode_container=="":
+
+            st.error("Kode Container wajib diisi.")
+
+        elif foto is None:
+
+            st.error("Dokumentasi wajib diambil.")
+
+        elif tanda_tangan=="":
+
+            st.error("Nama petugas wajib diisi.")
+
+        else:
+
+            st.success("Data berhasil disimpan.")
+
+            st.json({
+
+                "Nomor Penerimaan":nomor_penerimaan,
+
+                "Kode Container":kode_container,
+
+                "Petugas":tanda_tangan,
+
+                "Timestamp":timestamp
+
+            })
 
 elif menu=="📁 Bundle → MAP":
 
-    st.title("Bundle → MAP")
+    st.title("📁 Bundle → MAP")
+
+    with st.form("bundle"):
+
+        col1,col2=st.columns(2)
+
+        with col1:
+
+            nomor_penerimaan=st.text_input(
+                "Nomor Penerimaan"
+            )
+
+        with col2:
+
+            nomor_map=st.text_input(
+                "Nomor MAP"
+            )
+
+        foto=st.camera_input(
+            "Dokumentasi"
+        )
+
+        petugas=st.text_input(
+            "Nama Petugas"
+        )
+
+        waktu=datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+
+        st.text_input(
+            "Timestamp",
+            value=waktu,
+            disabled=True
+        )
+
+        submit=st.form_submit_button(
+            "💾 SIMPAN",
+            use_container_width=True
+        )
+
+    if submit:
+
+        st.success("Bundle berhasil diproses.")
 
 elif menu=="📦 Sortir → QC":
 
-    st.title("Sortir → QC")
+    st.title("📦 Sortir → QC")
+
+    with st.form("qc"):
+
+        nomor_map=st.text_input(
+            "Nomor MAP"
+        )
+
+        foto=st.camera_input(
+            "Dokumentasi QC"
+        )
+
+        petugas=st.text_input(
+            "Nama QC"
+        )
+
+        waktu=datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+
+        st.text_input(
+            "Timestamp",
+            value=waktu,
+            disabled=True
+        )
+
+        submit=st.form_submit_button(
+            "💾 SIMPAN",
+            use_container_width=True
+        )
+
+    if submit:
+
+        st.success("Data QC berhasil disimpan.")
 
 elif menu=="🗄 QC → Arsip":
 
-    st.title("QC → Arsip")
+    st.title("🗄 QC → Arsip")
+
+    with st.form("arsip"):
+
+        nomor_map=st.text_input(
+            "Nomor MAP"
+        )
+
+        foto=st.camera_input(
+            "Dokumentasi Arsip"
+        )
+
+        petugas=st.text_input(
+            "Nama Petugas Arsip"
+        )
+
+        waktu=datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+
+        st.text_input(
+            "Timestamp",
+            value=waktu,
+            disabled=True
+        )
+
+        submit=st.form_submit_button(
+            "💾 SIMPAN",
+            use_container_width=True
+        )
+
+    if submit:
+
+        st.success("Dokumen berhasil masuk arsip.")
 
 elif menu=="📈 Monitoring":
 
